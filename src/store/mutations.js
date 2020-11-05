@@ -5,7 +5,7 @@ import mutationType from "./mutationType";
 export default {
   [mutationType.CREATE_CODING_TASK]: (state, title, editing = true) => {
     state.codingTasks = [
-      ...state.codingTasks,
+      ...state.codingTasks.map(ct => ({ ...ct, editing: false })),
       { id: _uniqueId(), title, editing, score: 0, tasks: [] }
     ];
     storeState(state);
