@@ -7,7 +7,7 @@ export const storeState = state => {
 };
 
 export const restoreState = () => {
-  const state = localStorage.getItem("CODING_TASKS");
+  const state = localStorage.getItem("STATE_TASK_BOARD");
   if (state) return JSON.parse(state);
   return INITIAL_STATE;
 };
