@@ -21,7 +21,7 @@ export default {
   },
   [mutationType.SET_SUCCESS_SCORE]: (state, { id, score }) => {
     const codingTask = state.codingTasks.find(ct => ct.id === id);
-    if (codingTask) codingTask.score = score;
+    if (codingTask) codingTask.score = Math.min(100, Math.max(0, score));
     storeState(state);
   },
   [mutationType.INSERT_TASK_TO]: (state, { codingTask, title }) => {
