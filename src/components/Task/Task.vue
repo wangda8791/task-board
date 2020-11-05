@@ -22,7 +22,7 @@ export default {
   watch: {
     data: {
       immediate: true,
-      handler: val => {
+      handler(val) {
         this.task = val;
       }
     }

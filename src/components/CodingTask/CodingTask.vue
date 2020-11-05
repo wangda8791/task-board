@@ -3,11 +3,13 @@
     <li class="ctb-codingtask__header">
       <input
         type="text"
-        :value="codingTask.title"
-        v-if="editing"
+        v-model="codingTask.title"
+        v-if="codingTask.editing"
         @keyup.enter="onChanged"
       />
-      <span v-else @dblclick="editing = true">{{ codingTask.title }}</span>
+      <span v-else @dblclick="codingTask.editing = true">{{
+        codingTask.title
+      }}</span>
     </li>
     <li
       class="ctb-codingtask__item"
@@ -35,9 +37,14 @@ export default {
   watch: {
     data: {
       immediate: true,
-      handler: val => {
+      handler(val) {
         this.codingTask = val;
       }
+    }
+  },
+  methods: {
+    onChanged() {
+      this.$emit("change", this.codingTask);
     }
   }
 };

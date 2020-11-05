@@ -1,7 +1,7 @@
 <template>
-  <div class="fullscreen" @click="onNewCodingTask">
+  <div class="fullscreen" @dblclick="onNewCodingTask">
     <div class="header">
-      <h1>Coding Task Board</h1>
+      <h1 class="disable-selection">Coding Task Board</h1>
     </div>
     <div class="container">
       <div class="ct_grid">
@@ -10,7 +10,7 @@
           v-for="ct in codingTasks"
           :key="ct.id"
         >
-          <CodingTask :data="ct" />
+          <CodingTask :data="ct" @change="onCodingTaskChanged" />
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import CodingTask from "./CodingTask";
 
 export default {
@@ -31,7 +31,14 @@ export default {
     ...mapGetters(["codingTasks"])
   },
   methods: {
-    onNewCodingTask() {}
+    ...mapActions(["createCodingTask", "updateCodingTask"]),
+    onNewCodingTask() {
+      this.createCodingTask("");
+    },
+    onCodingTaskChanged(codingTask) {
+      console.log(codingTask);
+      this.updateCodingTask(codingTask);
+    }
   }
 };
 </script>
@@ -41,5 +48,12 @@ export default {
   width: 100%;
   height: 100vh;
   overflow: auto;
+  cursor: pointer;
+}
+.disable-selection {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 </style>
