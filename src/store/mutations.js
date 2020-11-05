@@ -14,7 +14,10 @@ export default {
   },
   [mutationType.UPDATE_CODING_TASK]: (state, { id, title }) => {
     const codingTask = state.codingTasks.find(ct => ct.id === id);
-    if (codingTask) codingTask.title = title;
+    if (codingTask) {
+      codingTask.title = title;
+      codingTask.editing = false;
+    }
     storeState(state);
   },
   [mutationType.DELETE_CODING_TASK]: (state, id) => {
