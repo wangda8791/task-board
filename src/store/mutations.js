@@ -3,10 +3,10 @@ import { storeState } from "./storageUtil";
 import mutationType from "./mutationType";
 
 export default {
-  [mutationType.CREATE_CODING_TASK]: (state, title) => {
+  [mutationType.CREATE_CODING_TASK]: (state, title, editing = true) => {
     state.codingTasks = [
       ...state.codingTasks,
-      { id: _uniqueId(), title, score: 0, tasks: [] }
+      { id: _uniqueId(), title, editing, score: 0, tasks: [] }
     ];
     storeState(state);
   },
