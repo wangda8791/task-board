@@ -1,5 +1,5 @@
 export default {
   codingTasks: state => {
-    return state.callTasks;
+    return state.codingTasks;
   }
 };
