@@ -1,4 +1,4 @@
-import { uniqueId } from "lodash/uniqueId";
+import _uniqueId from "lodash/uniqueId";
 import { storeState } from "./storageUtil";
 import mutationType from "./mutationType";
 
@@ -6,7 +6,7 @@ export default {
   [mutationType.CREATE_CODING_TASK]: (state, title) => {
     state.codingTasks = [
       ...state.codingTasks,
-      { id: uniqueId(), title, score: 0, tasks: [] }
+      { id: _uniqueId(), title, score: 0, tasks: [] }
     ];
     storeState(state);
   },
@@ -27,7 +27,7 @@ export default {
   [mutationType.INSERT_TASK_TO]: (state, { codingTask, title }) => {
     const _codingTask = state.codingTasks.find(ct => ct.id === codingTask.id);
     if (_codingTask)
-      codingTask.tasks = [...codingTask.tasks, { id: uniqueId(), title }];
+      codingTask.tasks = [...codingTask.tasks, { id: _uniqueId(), title }];
     storeState(state);
   },
   [mutationType.UPDATE_TASK_OF]: (state, { codingTask, task }) => {
