@@ -49,22 +49,25 @@ describe("mutations", () => {
 
   it(mutationType.SET_SUCCESS_SCORE, () => {
     expect(state.codingTasks.length).toBeGreaterThan(0);
-    const id = state.codingTasks[0].id;
+    const codingTask = state.codingTasks[0];
 
     const prevState = JSON.parse(JSON.stringify(state));
-    mutations.SET_SUCCESS_SCORE(state, { id: "non existing id", score: 80 });
+    mutations.SET_SUCCESS_SCORE(state, {
+      codingTask: { id: "non existing id" },
+      score: 80
+    });
     expect(state).toEqual(prevState);
 
-    mutations.SET_SUCCESS_SCORE(state, { id, score: -10 });
+    mutations.SET_SUCCESS_SCORE(state, { codingTask, score: -10 });
     expect(state.codingTasks[0].score).toBe(0);
 
-    mutations.SET_SUCCESS_SCORE(state, { id, score: 50 });
+    mutations.SET_SUCCESS_SCORE(state, { codingTask, score: 50 });
     expect(state.codingTasks[0].score).toBe(50);
 
-    mutations.SET_SUCCESS_SCORE(state, { id, score: 60 });
+    mutations.SET_SUCCESS_SCORE(state, { codingTask, score: 60 });
     expect(state.codingTasks[0].score).toBe(60);
 
-    mutations.SET_SUCCESS_SCORE(state, { id, score: 120 });
+    mutations.SET_SUCCESS_SCORE(state, { codingTask, score: 120 });
     expect(state.codingTasks[0].score).toBe(100);
   });
 
@@ -117,17 +120,22 @@ describe("mutations", () => {
     expect(state.codingTasks.length).toBeGreaterThan(0);
     expect(state.codingTasks[0].tasks.length).toBeGreaterThan(0);
     const length = state.codingTasks[0].tasks.length;
-    const id = state.codingTasks[0].tasks[0].id;
+    const task = state.codingTasks[0].tasks[0];
 
     const prevState = JSON.parse(JSON.stringify(state));
     mutations.DELETE_TASK_FROM(state, {
       codingTask: state.codingTasks[0],
-      id: "non existing id"
+      task: { id: "non existing id" }
     });
     expect(state).toEqual(prevState);
 
-    mutations.DELETE_TASK_FROM(state, { codingTask: state.codingTasks[0], id });
-    expect(state.codingTasks[0].tasks.filter(t => t.id === id)).toHaveLength(0);
+    mutations.DELETE_TASK_FROM(state, {
+      codingTask: state.codingTasks[0],
+      task
+    });
+    expect(
+      state.codingTasks[0].tasks.filter(t => t.id === task.id)
+    ).toHaveLength(0);
     expect(state.codingTasks[0].tasks.length).toBe(length - 1);
   });
 });
