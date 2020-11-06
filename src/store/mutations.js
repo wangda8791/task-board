@@ -33,23 +33,26 @@ export default {
   [mutationType.INSERT_TASK_TO]: (state, { codingTask, title }) => {
     const _codingTask = state.codingTasks.find(ct => ct.id === codingTask.id);
     if (_codingTask)
-      codingTask.tasks = [...codingTask.tasks, { id: uuidv4(), title }];
+      _codingTask.tasks = [
+        ..._codingTask.tasks,
+        { id: uuidv4(), title, editing: false, isNew: false }
+      ];
     storeState(state);
   },
   [mutationType.UPDATE_TASK_OF]: (state, { codingTask, task }) => {
     const _codingTask = state.codingTasks.find(ct => ct.id === codingTask.id);
     if (_codingTask) {
       _codingTask.tasks = _codingTask.tasks.map(t => {
-        if (t.id === task.id) return task;
+        if (t.id === task.id) return { ...task, editing: false };
         return t;
       });
     }
     storeState(state);
   },
-  [mutationType.DELETE_TASK_FROM]: (state, { codingTask, id }) => {
+  [mutationType.DELETE_TASK_FROM]: (state, { codingTask, task }) => {
     const _codingTask = state.codingTasks.find(ct => ct.id === codingTask.id);
     if (_codingTask)
-      _codingTask.tasks = _codingTask.tasks.filter(t => t.id !== id);
+      _codingTask.tasks = _codingTask.tasks.filter(t => t.id !== task.id);
     storeState(state);
   }
 };
