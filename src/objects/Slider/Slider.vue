@@ -8,7 +8,13 @@
         @click="onSetValue(i * 10)"
         @mousedown="onDragStarted"
       >
-        <div class="slider__progress" :style="{ width: width[i - 1] }"></div>
+        <div
+          class="slider__progress"
+          :style="{
+            width: width[i - 1],
+            backgroundColor: color ? rangeColor : ''
+          }"
+        ></div>
       </div>
     </div>
   </div>
@@ -16,7 +22,7 @@
 
 <script>
 export default {
-  props: ["value"],
+  props: ["value", "color", "level"],
   data() {
     return {
       progress: 0,
@@ -38,6 +44,12 @@ export default {
         width[i] = `${Math.max(0, Math.min(10, this.progress - i * 10)) * 10}%`;
       }
       return width;
+    },
+    rangeColor() {
+      const level = this.level || { low: 30, medium: 60, success: 100 };
+      if (this.progress < level.low) return this.color.low || "";
+      if (this.progress > level.medium) return this.color.success || "";
+      return this.color.medium;
     }
   },
   methods: {

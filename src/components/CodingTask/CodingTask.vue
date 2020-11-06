@@ -16,12 +16,29 @@
         @blur="onBlur"
       />
       <span v-else @dblclick="onEditTitle($event)">
+        <i
+          class="ctb-codingtask__status material-icons"
+          :class="{
+            'ctb-codingtask__status-low': codingTask.score < 30,
+            'ctb-codingtask__status-medium':
+              codingTask.score >= 30 && codingTask.score < 60,
+            'ctb-codingtask__status-success': codingTask.score >= 60
+          }"
+          >verified</i
+        >
         {{ codingTask.title }}
-        <i class="material-icons" @click="onDelete">delete</i>
+        <i class="ctb-codingtask__delete material-icons" @click="onDelete"
+          >delete</i
+        >
       </span>
     </li>
     <li class="ctb-codingtask__item">
-      <Slider :value="codingTask.score" @change="onSuccessScoreChanged" />
+      <Slider
+        :value="codingTask.score"
+        :level="{ low: 30, medium: 60, success: 100 }"
+        :color="{ low: '#f03d3d', medium: '#f1f218', success: '#23c323' }"
+        @change="onSuccessScoreChanged"
+      />
     </li>
     <li
       class="ctb-codingtask__item"

@@ -28,12 +28,12 @@
     span {
       display: block;
       width: 100%;
-      padding: 2px;
+      padding: 2px 1.2rem;
       position: relative;
       font-size: 1rem;
       font-weight: bold;
 
-      i {
+      i.ctb-codingtask__delete {
         position: absolute;
         top: 0px;
         right: 0px;
@@ -41,9 +41,28 @@
         font-size: 1.3rem;
       }
 
-      &:hover i {
+      &:hover i.ctb-codingtask__delete {
         display: block;
       }
+    }
+  }
+
+  &__status {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    color: $color-green;
+
+    &-low {
+      color: $color-red;
+    }
+
+    &-medium {
+      color: $color-yellow;
+    }
+
+    &-high {
+      color: $color-green;
     }
   }
 
