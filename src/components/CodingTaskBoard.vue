@@ -15,6 +15,7 @@
             :data="ct"
             @change="onCodingTaskChanged"
             @delete="onCodingTaskDelete"
+            @change-success-score="onSuccessScoreChanged"
             @task-add="onTaskAdded"
             @task-change="onTaskChanged"
             @task-delete="onTaskDeleted"
@@ -46,6 +47,7 @@ export default {
       "createCodingTask",
       "updateCodingTask",
       "deleteCodingTask",
+      "setSuccessScore",
       "insertTaskTo",
       "updateTaskOf",
       "deleteTaskFrom"
@@ -58,6 +60,9 @@ export default {
     },
     onCodingTaskDelete(codingTask) {
       this.deleteCodingTask(codingTask);
+    },
+    onSuccessScoreChanged(codingTask, score) {
+      this.setSuccessScore({ codingTask, score });
     },
     onTaskAdded(codingTask, task) {
       console.log(task);

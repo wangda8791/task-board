@@ -21,7 +21,7 @@
       </span>
     </li>
     <li class="ctb-codingtask__item">
-      <Slider :value="76" />
+      <Slider :value="codingTask.score" @change="onSuccessScoreChanged" />
     </li>
     <li
       class="ctb-codingtask__item"
@@ -105,6 +105,9 @@ export default {
     },
     onDelete() {
       this.$emit("delete", this.codingTask);
+    },
+    onSuccessScoreChanged(score) {
+      this.$emit("change-success-score", this.codingTask, score);
     },
     onAddTask() {
       this.codingTask.tasks.push({
