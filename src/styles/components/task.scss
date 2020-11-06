@@ -1,0 +1,35 @@
+.ctb-task {
+  padding: 3px;
+
+  * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  input {
+    padding: 2px;
+    outline: 0;
+    width: 100%;
+  }
+
+  span {
+    display: block;
+    padding: 2px;
+    width: 100%;
+    position: relative;
+
+    i {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      display: none;
+      font-size: 1.3rem;
+    }
+
+    &:hover i {
+      display: block;
+    }
+  }
+}
