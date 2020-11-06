@@ -1,6 +1,7 @@
 .ct_grid {
   display: grid;
   grid-gap: $grid-gap;
+  grid-template-columns: repeat(12, auto);
 
   $keys: "xs", "s", "m", "l", "xl";
 
@@ -8,7 +9,7 @@
     @include breakpoint($key) {
       @for $i from 1 through $column-count {
         .ct_grid__#{$key}#{$i} {
-          grid-row: #{$i} / #{$column-count};
+          grid-area: span #{$i} / span #{$i};
         }
       }
     }
