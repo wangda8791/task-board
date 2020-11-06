@@ -5,6 +5,10 @@
 
   $keys: "xs", "s", "m", "l", "xl";
 
+  .ct_grid_col {
+    grid-area: span 12 / span 12;
+  }
+
   @each $key in $keys {
     @include breakpoint($key) {
       @for $i from 1 through $column-count {
