@@ -47,8 +47,7 @@ export default {
       });
     },
     onChanged() {
-      if (this.task.title.length === 0) return;
-      this.$emit("change", this.task);
+      this.$refs.input.blur();
     },
     onBlur() {
       this.task.editing = false;
@@ -59,7 +58,7 @@ export default {
           this.task.title = this.data.title;
         }
       } else {
-        this.onChanged();
+        this.$emit("change", this.task);
       }
     },
     onDelete() {
