@@ -65,7 +65,6 @@ export default {
       this.setSuccessScore({ codingTask, score });
     },
     onTaskAdded(codingTask, task) {
-      console.log(task);
       this.insertTaskTo({ codingTask, title: task.title });
     },
     onTaskChanged(codingTask, task) {
