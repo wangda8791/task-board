@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: center;
     padding: 3px 3px;
-    height: 30px;
+    min-height: 30px;
     border-bottom: 1px solid lightgray;
 
     input {
@@ -50,7 +50,7 @@
   &__item {
     border-bottom: 1px dotted #ccc;
 
-    &:last-child {
+    &:nth-last-child(2) {
       border-bottom: 0;
     }
   }

@@ -20,6 +20,9 @@
         <i class="material-icons" @click="onDelete">delete</i>
       </span>
     </li>
+    <li class="ctb-codingtask__item">
+      <Slider :value="76" />
+    </li>
     <li
       class="ctb-codingtask__item"
       v-for="task in codingTask.tasks"
@@ -47,12 +50,14 @@
 </template>
 
 <script>
-import Task from "../Task";
+import Task from "@/components/Task";
+import Slider from "@/objects/Slider";
 
 export default {
   props: ["data"],
   components: {
-    Task
+    Task,
+    Slider
   },
   data() {
     return {
