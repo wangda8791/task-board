@@ -10,7 +10,11 @@
           v-for="ct in codingTasks"
           :key="ct.id"
         >
-          <CodingTask :data="ct" @change="onCodingTaskChanged" />
+          <CodingTask
+            :data="ct"
+            @change="onCodingTaskChanged"
+            @delete="onCodingTaskDelete"
+          />
         </div>
       </div>
     </div>
@@ -31,13 +35,15 @@ export default {
     ...mapGetters(["codingTasks"])
   },
   methods: {
-    ...mapActions(["createCodingTask", "updateCodingTask"]),
+    ...mapActions(["createCodingTask", "updateCodingTask", "deleteCodingTask"]),
     onNewCodingTask() {
       this.createCodingTask("");
     },
     onCodingTaskChanged(codingTask) {
-      console.log(codingTask);
       this.updateCodingTask(codingTask);
+    },
+    onCodingTaskDelete(codingTask) {
+      this.deleteCodingTask(codingTask);
     }
   }
 };

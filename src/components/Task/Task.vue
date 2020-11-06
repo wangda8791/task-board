@@ -22,8 +22,9 @@ export default {
   watch: {
     data: {
       immediate: true,
+      deep: true,
       handler(val) {
-        this.task = val;
+        this.task = { ...val };
       }
     }
   },
