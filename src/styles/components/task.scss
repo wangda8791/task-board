@@ -21,15 +21,24 @@
     position: relative;
     line-height: 1rem;
 
-    i {
+    i.ctb-task__delete,
+    i.ctb-task__edit {
       position: absolute;
-      top: 0px;
-      right: 0px;
       display: none;
       font-size: 1.3rem;
+      top: 0px;
     }
 
-    &:hover i {
+    i.ctb-task__delete {
+      right: 0px;
+    }
+
+    i.ctb-task__edit {
+      right: 1.5rem;
+    }
+
+    &:hover i.ctb-task__delete,
+    &:hover i.ctb-task__edit {
       display: block;
     }
   }

@@ -16,7 +16,13 @@
     />
     <span v-else @dblclick="onEditTitle($event)">
       {{ task.title }}
-      <i class="material-icons" @click="onDelete">delete</i>
+      <i
+        class="ctb-task__edit material-icons"
+        v-if="$isMobile"
+        @click="onEditTitle($event)"
+        >edit</i
+      >
+      <i class="ctb-task__delete material-icons" @click="onDelete">delete</i>
     </span>
   </div>
 </template>

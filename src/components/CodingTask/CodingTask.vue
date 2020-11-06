@@ -28,6 +28,12 @@
           >verified</i
         >
         {{ codingTask.title }}
+        <i
+          class="ctb-codingtask__edit material-icons"
+          v-if="$isMobile"
+          @click="onEditTitle($event)"
+          >edit</i
+        >
         <i class="ctb-codingtask__delete material-icons" @click="onDelete"
           >delete</i
         >

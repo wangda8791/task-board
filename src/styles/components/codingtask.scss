@@ -33,15 +33,24 @@
       font-size: 1rem;
       font-weight: bold;
 
-      i.ctb-codingtask__delete {
+      i.ctb-codingtask__delete,
+      i.ctb-codingtask__edit {
         position: absolute;
-        top: 0px;
-        right: 0px;
         display: none;
         font-size: 1.3rem;
+        top: 0px;
       }
 
-      &:hover i.ctb-codingtask__delete {
+      i.ctb-codingtask__delete {
+        right: 0px;
+      }
+
+      i.ctb-codingtask__edit {
+        right: 1.5rem;
+      }
+
+      &:hover i.ctb-codingtask__delete,
+      &:hover i.ctb-codingtask__edit {
         display: block;
       }
     }

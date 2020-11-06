@@ -26,6 +26,11 @@
         </div>
       </div>
     </div>
+    <div class="footer">
+      <button @click="onNewCodingTask">
+        <span class="button__icon">add</span>Add New Coding Task
+      </button>
+    </div>
   </div>
 </template>
 
@@ -35,7 +40,6 @@ import CodingTask from "./CodingTask";
 
 export default {
   name: "CodingTaskBoard",
-  props: {},
   components: {
     CodingTask
   },
@@ -89,10 +93,13 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  background-color: white;
   border-bottom: 1px solid lightgray;
-  margin-bottom: 2rem;
   box-shadow: 1px 2px 3px #cccccc89;
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  z-index: 1;
 
   h1 {
     margin-bottom: 0.5rem;
@@ -101,5 +108,21 @@ export default {
   small {
     color: #333;
   }
+}
+.container {
+  padding-top: 120px;
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+}
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-top: 1px solid lightgray;
+  box-shadow: 1px -2px 3px #cccccc89;
+  width: 100%;
+  height: 50px;
 }
 </style>
