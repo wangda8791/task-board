@@ -19,7 +19,8 @@
         <i
           class="ctb-codingtask__status material-icons"
           :class="{
-            'ctb-codingtask__status-low': codingTask.score < 30,
+            'ctb-codingtask__status-low':
+              codingTask.score > 0 && codingTask.score < 30,
             'ctb-codingtask__status-medium':
               codingTask.score >= 30 && codingTask.score < 60,
             'ctb-codingtask__status-success': codingTask.score >= 60

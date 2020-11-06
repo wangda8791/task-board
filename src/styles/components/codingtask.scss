@@ -51,7 +51,7 @@
     position: absolute;
     left: 0px;
     top: 0px;
-    color: $color-green;
+    color: $color-light-gray;
 
     &-low {
       color: $color-red;
@@ -61,7 +61,7 @@
       color: $color-yellow;
     }
 
-    &-high {
+    &-success {
       color: $color-green;
     }
   }
