@@ -1,12 +1,17 @@
 <template>
-  <div class="ctb-task" v-if="task">
+  <div
+    class="ctb-task"
+    v-if="task"
+    @dblclick="$event => $event.stopPropagation()"
+  >
     <input
       ref="input"
       type="text"
-      placeholder="Enter task title here..."
+      placeholder="New Task..."
       v-model="task.title"
       v-if="task.editing"
       @keyup.enter="onChanged"
+      @keyup.esc="onBlur"
       @blur="onBlur"
     />
     <span v-else @dblclick="onEditTitle($event)">
@@ -72,6 +77,13 @@ export default {
 .ctb-task {
   padding: 3px;
 
+  * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
   input {
     padding: 2px;
     outline: 0;
@@ -89,6 +101,7 @@ export default {
       top: 0px;
       right: 0px;
       display: none;
+      font-size: 1.3rem;
     }
 
     &:hover i {

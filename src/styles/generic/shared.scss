@@ -7,3 +7,15 @@
 .pull-right {
   float: right;
 }
+
+span,
+p {
+  font-size: 0.8rem;
+}
+
+.disable-selection {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

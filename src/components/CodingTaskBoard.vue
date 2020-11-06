@@ -2,6 +2,7 @@
   <div class="fullscreen" @dblclick="onNewCodingTask">
     <div class="header">
       <h1 class="disable-selection">Coding Task Board</h1>
+      <small>Please double click board to add new coding task.</small>
     </div>
     <div class="container">
       <div class="ct_grid">
@@ -18,6 +19,9 @@
             @task-change="onTaskChanged"
             @task-delete="onTaskDeleted"
           />
+        </div>
+        <div class="ct_grid_col center" v-if="codingTasks.length === 0">
+          No coding task.
         </div>
       </div>
     </div>
@@ -78,16 +82,20 @@ export default {
 }
 .header {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80px;
+  height: 100px;
   border-bottom: 1px solid lightgray;
   margin-bottom: 2rem;
-}
-.disable-selection {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  box-shadow: 1px 2px 3px #cccccc89;
+
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  small {
+    color: #333;
+  }
 }
 </style>

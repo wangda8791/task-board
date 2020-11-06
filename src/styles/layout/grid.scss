@@ -1,7 +1,7 @@
 .ct_grid {
   display: grid;
   grid-gap: $grid-gap;
-  grid-template-columns: repeat(12, auto);
+  grid-template-columns: repeat($column-count, auto);
 
   $keys: "xs", "s", "m", "l", "xl";
 
