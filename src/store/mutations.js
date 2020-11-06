@@ -3,12 +3,12 @@ import { storeState } from "./storageUtil";
 import mutationType from "./mutationType";
 
 export default {
-  [mutationType.CREATE_CODING_TASK]: (state, title, editing = true) => {
+  [mutationType.CREATE_CODING_TASK]: (state, title) => {
     state.codingTasks = [
       ...state.codingTasks
         .filter(ct => ct.title.length > 0)
         .map(ct => ({ ...ct, editing: false })),
-      { id: uuidv4(), title, editing, score: 0, tasks: [] }
+      { id: uuidv4(), title, editing: true, isNew: true, score: 0, tasks: [] }
     ];
     storeState(state);
   },
@@ -17,6 +17,7 @@ export default {
     if (codingTask) {
       codingTask.title = title;
       codingTask.editing = false;
+      codingTask.isNew = false;
     }
     storeState(state);
   },
