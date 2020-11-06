@@ -21,6 +21,11 @@
     >
       <Task :data="task" />
     </li>
+    <li class="ctb-codingtask__footer">
+      <button @click="onAddTask">
+        <span class="button__icon">add</span>Add New Task
+      </button>
+    </li>
   </ul>
 </template>
 
@@ -78,6 +83,15 @@ export default {
     },
     onDelete() {
       this.$emit("delete", this.codingTask);
+    },
+    onAddTask() {
+      this.codingTask.tasks.push({
+        id: -1,
+        title: "",
+        editing: true,
+        isNew: true
+      });
+      console.log(this.codingTask);
     }
   }
 };
@@ -119,6 +133,17 @@ export default {
       &:hover i {
         display: block;
       }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+
+    button {
+      width: 100%;
     }
   }
 }

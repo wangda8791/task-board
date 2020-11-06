@@ -1,12 +1,13 @@
 <template>
   <div class="ctb-task" v-if="task">
     <input
+      ref="input"
       type="text"
       :value="task.title"
-      v-if="editing"
+      v-if="task.editing"
       @keyup.enter="onChanged"
     />
-    <span v-else @dblclick="editing = true">{{ task.title }}</span>
+    <span v-else @dblclick="onEditTitle($event)">{{ task.title }}</span>
   </div>
 </template>
 
@@ -15,8 +16,7 @@ export default {
   props: ["data"],
   data() {
     return {
-      task: null,
-      editing: false
+      task: null
     };
   },
   watch: {
@@ -29,8 +29,14 @@ export default {
     }
   },
   methods: {
+    onEditTitle() {
+      this.task.editing = true;
+      this.$nextTick(() => {
+        this.$refs.input.focus();
+      });
+    },
     onChanged() {
-      this.editing = false;
+      this.task.editing = false;
     }
   }
 };
@@ -38,11 +44,12 @@ export default {
 
 <style scoped lang="scss">
 .ctb-task {
-  padding: 3px 6px;
+  padding: 3px;
 
   input {
     padding: 2px;
     outline: 0;
+    width: 100%;
   }
 
   span {
