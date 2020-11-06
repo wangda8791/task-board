@@ -6,7 +6,7 @@
     <div class="container">
       <div class="ct_grid">
         <div
-          class="ct_grid__s12 ct_grid__m4 ct_grid__m2"
+          class="ct_grid__s12 ct_grid__m4 ct_grid__l2"
           v-for="ct in codingTasks"
           :key="ct.id"
         >

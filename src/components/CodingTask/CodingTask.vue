@@ -52,12 +52,14 @@ export default {
 
 <style scoped lang="scss">
 .ctb-codingtask {
-  list-style-type: none;
   border: 1px solid lightgray;
   border-radius: 4px;
   box-shadow: 0 1px 3px #eeeeee86;
 
   &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 3px 6px;
     height: 30px;
 

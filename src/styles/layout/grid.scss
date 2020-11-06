@@ -1,0 +1,16 @@
+.ct_grid {
+  display: grid;
+  grid-gap: $grid-gap;
+
+  $keys: "xs", "s", "m", "l", "xl";
+
+  @each $key in $keys {
+    @include breakpoint($key) {
+      @for $i from 1 through $column-count {
+        .ct_grid__#{$key}#{$i} {
+          grid-row: #{$i} / #{$column-count};
+        }
+      }
+    }
+  }
+}
