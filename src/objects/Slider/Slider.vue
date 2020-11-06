@@ -1,7 +1,12 @@
 <template>
   <div class="slider">
     <div class="slider__bg">
-      <div class="slider__segment" v-for="i in 10" :key="i">
+      <div
+        class="slider__segment"
+        v-for="i in 10"
+        :key="i"
+        @click="onSetValue(i * 10)"
+      >
         <div class="slider__progress" :style="{ width: width[i - 1] }"></div>
       </div>
     </div>
@@ -30,38 +35,13 @@ export default {
       for (let i = 0; i < 10; i++) {
         width[i] = `${Math.max(0, Math.min(10, this.progress - i * 10)) * 10}%`;
       }
-      console.log(width);
       return width;
+    }
+  },
+  methods: {
+    onSetValue(value) {
+      this.$emit("change", value);
     }
   }
 };
 </script>
-
-<style lang="scss">
-.slider {
-  &__bg {
-    display: flex;
-    background-color: transparent;
-    padding: 2px;
-    position: relative;
-  }
-
-  &__segment {
-    background-color: lightgray;
-    border-radius: 2px;
-    margin-right: 1px;
-    overflow: hidden;
-    width: 100px;
-    height: 6px;
-
-    &:last-child {
-      margin-right: 0px;
-    }
-  }
-
-  &__progress {
-    background-color: green;
-    height: 100%;
-  }
-}
-</style>

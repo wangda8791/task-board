@@ -1,0 +1,26 @@
+.slider {
+  &__bg {
+    display: flex;
+    background-color: transparent;
+    padding: 2px;
+    position: relative;
+  }
+
+  &__segment {
+    background-color: lightgray;
+    border-radius: 2px;
+    margin-right: 1px;
+    overflow: hidden;
+    width: 100px;
+    height: 6px;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+
+  &__progress {
+    background-color: $color-green;
+    height: 100%;
+  }
+}
