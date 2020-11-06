@@ -6,7 +6,7 @@
     <div class="container">
       <div class="ct_grid">
         <div
-          class="ct_grid__s12 ct_grid__m4 ct_grid__l2"
+          class="ct_grid_col ct_grid__s6 ct_grid__m4 ct_grid__l3"
           v-for="ct in codingTasks"
           :key="ct.id"
         >
@@ -14,6 +14,9 @@
             :data="ct"
             @change="onCodingTaskChanged"
             @delete="onCodingTaskDelete"
+            @task-add="onTaskAdded"
+            @task-change="onTaskChanged"
+            @task-delete="onTaskDeleted"
           />
         </div>
       </div>
@@ -35,7 +38,14 @@ export default {
     ...mapGetters(["codingTasks"])
   },
   methods: {
-    ...mapActions(["createCodingTask", "updateCodingTask", "deleteCodingTask"]),
+    ...mapActions([
+      "createCodingTask",
+      "updateCodingTask",
+      "deleteCodingTask",
+      "insertTaskTo",
+      "updateTaskOf",
+      "deleteTaskFrom"
+    ]),
     onNewCodingTask() {
       this.createCodingTask("");
     },
@@ -44,6 +54,16 @@ export default {
     },
     onCodingTaskDelete(codingTask) {
       this.deleteCodingTask(codingTask);
+    },
+    onTaskAdded(codingTask, task) {
+      console.log(task);
+      this.insertTaskTo({ codingTask, title: task.title });
+    },
+    onTaskChanged(codingTask, task) {
+      this.updateTaskOf({ codingTask, task });
+    },
+    onTaskDeleted(codingTask, task) {
+      this.deleteTaskFrom({ codingTask, task });
     }
   }
 };
@@ -55,6 +75,14 @@ export default {
   height: 100vh;
   overflow: auto;
   cursor: pointer;
+}
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 2rem;
 }
 .disable-selection {
   -webkit-user-select: none;

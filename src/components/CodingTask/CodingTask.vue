@@ -4,6 +4,7 @@
       <input
         ref="input"
         type="text"
+        placeholder="Enter coding task title here..."
         v-model="codingTask.title"
         v-if="codingTask.editing"
         @keyup.enter="onChanged"
@@ -19,7 +20,12 @@
       v-for="task in codingTask.tasks"
       :key="task.id"
     >
-      <Task :data="task" />
+      <Task
+        :data="task"
+        @change="onTaskUpdate"
+        @delete="onTaskDelete"
+        @escape="onEscape"
+      />
     </li>
     <li class="ctb-codingtask__footer">
       <button @click="onAddTask">
@@ -47,7 +53,7 @@ export default {
       immediate: true,
       deep: true,
       handler(val) {
-        this.codingTask = { ...val };
+        this.codingTask = JSON.parse(JSON.stringify(val));
       }
     }
   },
@@ -91,7 +97,21 @@ export default {
         editing: true,
         isNew: true
       });
-      console.log(this.codingTask);
+    },
+    onTaskUpdate(task) {
+      if (task.isNew) {
+        this.$emit("task-add", this.codingTask, task);
+      } else {
+        this.$emit("task-change", this.codingTask, task);
+      }
+    },
+    onTaskDelete(task) {
+      this.$emit("task-delete", this.codingTask, task);
+    },
+    onEscape(task) {
+      this.codingTask.tasks = this.codingTask.tasks.filter(
+        t => t.id !== task.id
+      );
     }
   }
 };
@@ -109,6 +129,7 @@ export default {
     align-items: center;
     padding: 3px 3px;
     height: 30px;
+    border-bottom: 1px solid lightgray;
 
     input {
       padding: 2px;
