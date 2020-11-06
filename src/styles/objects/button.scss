@@ -1,0 +1,25 @@
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 0;
+  font-size: 0.7rem;
+  padding: 4px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:active {
+    outline: 0;
+  }
+
+  &:hover {
+    background-color: lightgray;
+  }
+
+  span.button__icon {
+    font-family: "Material Icons";
+    float: left;
+    margin-left: 4px;
+  }
+}
