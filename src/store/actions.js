@@ -10,8 +10,8 @@ export default {
   deleteCodingTask({ commit }, codingTask) {
     commit(mutationType.DELETE_CODING_TASK, codingTask.id);
   },
-  setSuccessScore({ commit }, id, score) {
-    commit(mutationType.SET_SUCCESS_SCORE, { id, score });
+  setSuccessScore({ commit }, { codingTask, score }) {
+    commit(mutationType.SET_SUCCESS_SCORE, { codingTask, score });
   },
   insertTaskTo({ commit }, { codingTask, title }) {
     commit(mutationType.INSERT_TASK_TO, { codingTask, title });

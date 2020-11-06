@@ -25,9 +25,9 @@ export default {
     state.codingTasks = state.codingTasks.filter(ct => ct.id !== id);
     storeState(state);
   },
-  [mutationType.SET_SUCCESS_SCORE]: (state, { id, score }) => {
-    const codingTask = state.codingTasks.find(ct => ct.id === id);
-    if (codingTask) codingTask.score = Math.min(100, Math.max(0, score));
+  [mutationType.SET_SUCCESS_SCORE]: (state, { codingTask, score }) => {
+    const _codingTask = state.codingTasks.find(ct => ct.id === codingTask.id);
+    if (_codingTask) _codingTask.score = Math.min(100, Math.max(0, score));
     storeState(state);
   },
   [mutationType.INSERT_TASK_TO]: (state, { codingTask, title }) => {
