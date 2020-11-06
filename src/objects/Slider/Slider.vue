@@ -1,11 +1,12 @@
 <template>
-  <div class="slider">
+  <div ref="slider" class="slider">
     <div class="slider__bg">
       <div
         class="slider__segment"
         v-for="i in 10"
         :key="i"
         @click="onSetValue(i * 10)"
+        @mousedown="onDragStarted"
       >
         <div class="slider__progress" :style="{ width: width[i - 1] }"></div>
       </div>
@@ -18,7 +19,8 @@ export default {
   props: ["value"],
   data() {
     return {
-      progress: 0
+      progress: 0,
+      dragging: false
     };
   },
   watch: {
@@ -41,6 +43,41 @@ export default {
   methods: {
     onSetValue(value) {
       this.$emit("change", value);
+    },
+    onDragStarted() {
+      this.dragging = true;
+
+      const body = document.querySelector("body");
+      const slider = this.$refs.slider;
+
+      const getOffsetLeft = elem => {
+        var offsetLeft = 0;
+        do {
+          if (!isNaN(elem.offsetLeft)) {
+            offsetLeft += elem.offsetLeft;
+          }
+        } while ((elem = elem.offsetParent));
+        return offsetLeft;
+      };
+
+      const sliderX = getOffsetLeft(slider);
+      const sliderWidth = slider.clientWidth;
+
+      const onDragging = e => {
+        if (this.dragging) {
+          let value;
+          if (e.x < sliderX) value = 0;
+          else if (e.x > sliderX + sliderWidth) value = 100;
+          else value = Math.ceil(((e.x - sliderX) / sliderWidth) * 100);
+          this.onSetValue(value);
+        }
+      };
+      const onDraggingStop = () => {
+        body.removeEventListener("mousemove", onDragging);
+        body.addEventListener("mouseup", onDraggingStop);
+      };
+      body.addEventListener("mousemove", onDragging);
+      body.addEventListener("mouseup", onDraggingStop);
     }
   }
 };
